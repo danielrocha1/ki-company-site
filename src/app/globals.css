@@ -5,28 +5,28 @@
    Dark mode é a identidade principal. Todas as cores vivem aqui.
 ------------------------------------------------------------------- */
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Montserrat Variable", "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
 
-  --color-ink-950: #05070c;
-  --color-ink-900: #080b12;
-  --color-ink-850: #0a0e16;
-  --color-ink-800: #0e1320;
-  --color-ink-700: #151c2c;
-  --color-navy-900: #0b1324;
-  --color-navy-800: #0f1b33;
+  --color-ink-950: #0A1020;
+  --color-ink-900: #0C1326;
+  --color-ink-850: #0E162B;
+  --color-ink-800: #111B33;
+  --color-ink-700: #18243F;
+  --color-navy-900: #0D2440;
+  --color-navy-800: #0F2D4B;
 
   --color-line: rgb(148 163 194 / 0.12);
   --color-line-strong: rgb(148 163 194 / 0.22);
 
-  --color-fg: #edf1f7;
-  --color-fg-muted: #a3adbf;
-  --color-fg-subtle: #7a8598;
+  --color-fg: #F3F5F8;
+  --color-fg-muted: #AEB8C9;
+  --color-fg-subtle: #7E8AA0;
 
-  --color-signal: #4d8dff;
-  --color-signal-strong: #2f74ff;
-  --color-data: #3dd6f5;
-  --color-violet: #8b7cf6;
+  --color-signal: #2F7BFF;
+  --color-signal-strong: #1E5BFF;
+  --color-data: #00E6C3;
+  --color-violet: #8B5CF6;
   --color-ok: #34d399;
   --color-warn: #fbbf24;
   --color-danger: #f87171;
@@ -80,15 +80,14 @@
     background: var(--color-ink-950);
     color: var(--color-fg);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
-    -webkit-font-smoothing: antialiased;
+        -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: clip;
   }
 
   ::selection {
-    background: rgb(77 141 255 / 0.35);
+    background: rgb(47 123 255 / 0.35);
     color: #fff;
   }
 
@@ -124,7 +123,7 @@
   }
 
   .text-gradient {
-    background: linear-gradient(100deg, #f5f8ff 10%, #9cc0ff 45%, #7fe3f7 75%, #b3a8ff 100%);
+    background: linear-gradient(100deg, #ffffff 10%, #8fb8ff 45%, #4ff0d8 75%, #b39cff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -146,7 +145,7 @@
     background: radial-gradient(
       320px circle at var(--mx) var(--my),
       rgb(110 160 255 / 0.55),
-      rgb(61 214 245 / 0.18) 35%,
+      rgb(0 230 195 / 0.18) 35%,
       transparent 65%
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -162,7 +161,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(420px circle at var(--mx) var(--my), rgb(77 141 255 / 0.07), transparent 60%);
+    background: radial-gradient(420px circle at var(--mx) var(--my), rgb(47 123 255 / 0.07), transparent 60%);
     opacity: 0;
     transition: opacity 0.4s var(--ease-out-expo);
     pointer-events: none;

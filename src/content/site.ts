@@ -1,7 +1,7 @@
 /**
  * Dados institucionais da KI COMPANY.
  *
- * Tudo o que não foi confirmado (e-mail, telefone, CNPJ, endereço, redes)
+ * Tudo o que não foi confirmado (e-mail, telefone, endereço, redes)
  * vem de variáveis de ambiente públicas. Campo vazio = campo não exibido.
  * Nunca preencha estes valores com dados de exemplo.
  */
@@ -17,6 +17,7 @@ export const site = {
   locale: "pt-BR",
   url: (env("NEXT_PUBLIC_SITE_URL") ?? "http://localhost:3000").replace(/\/$/, ""),
   tagline: "Tecnologia que conecta. Engenharia que transforma.",
+  slogan: "Inovação. Conexão. Crescimento.",
   description:
     "Desenvolvemos produtos digitais, integramos sistemas e criamos soluções tecnológicas para conectar negócios, pessoas e operações.",
   contact: {
@@ -26,8 +27,9 @@ export const site = {
     city: env("NEXT_PUBLIC_COMPANY_CITY"),
   },
   legal: {
-    legalName: env("NEXT_PUBLIC_COMPANY_LEGAL_NAME"),
-    cnpj: env("NEXT_PUBLIC_COMPANY_CNPJ"),
+    // Confirmados pela empresa em 22/11/2026. As variáveis só servem para sobrescrever.
+    legalName: env("NEXT_PUBLIC_COMPANY_LEGAL_NAME") ?? "KI COMPANY INOVA SIMPLES (I.S.)",
+    cnpj: env("NEXT_PUBLIC_COMPANY_CNPJ") ?? "69.196.472/0001-68",
   },
   social: {
     linkedin: env("NEXT_PUBLIC_SOCIAL_LINKEDIN"),

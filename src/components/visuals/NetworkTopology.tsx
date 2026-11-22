@@ -206,18 +206,18 @@ export function NetworkTopology({ className }: { className?: string }) {
     >
       <defs>
         <linearGradient id="nt-edge" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0" stopColor="#4D8DFF" />
-          <stop offset="0.6" stopColor="#3DD6F5" />
-          <stop offset="1" stopColor="#8B7CF6" />
+          <stop offset="0" stopColor="#2F7BFF" />
+          <stop offset="0.6" stopColor="#00E6C3" />
+          <stop offset="1" stopColor="#8B5CF6" />
         </linearGradient>
         <radialGradient id="nt-pulse">
           <stop offset="0" stopColor="#E8FBFF" />
-          <stop offset="0.25" stopColor="#3DD6F5" stopOpacity="0.9" />
-          <stop offset="1" stopColor="#3DD6F5" stopOpacity="0" />
+          <stop offset="0.25" stopColor="#00E6C3" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#00E6C3" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="nt-hub">
-          <stop offset="0" stopColor="#4D8DFF" stopOpacity="0.35" />
-          <stop offset="1" stopColor="#4D8DFF" stopOpacity="0" />
+          <stop offset="0" stopColor="#2F7BFF" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#2F7BFF" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -269,9 +269,9 @@ export function NetworkTopology({ className }: { className?: string }) {
                 style={{ transformBox: "fill-box", transformOrigin: "center" }}
               />
             )}
-            <circle data-node={n.id} cx={n.x} cy={n.y} r={r + 5} fill="none" stroke="#3DD6F5" strokeWidth={1} style={{ opacity: 0.25 }} />
-            <circle cx={n.x} cy={n.y} r={r} fill="#0A0E16" stroke={n.hub ? "#4D8DFF" : "rgb(237 241 247 / 0.7)"} strokeWidth={1.5} />
-            <circle cx={n.x} cy={n.y} r={n.hub ? 2.4 : 1.6} fill={n.hub ? "#4D8DFF" : "#EDF1F7"} />
+            <circle data-node={n.id} cx={n.x} cy={n.y} r={r + 5} fill="none" stroke="#00E6C3" strokeWidth={1} style={{ opacity: 0.25 }} />
+            <circle cx={n.x} cy={n.y} r={r} fill="#0E162B" stroke={n.hub ? "#2F7BFF" : "rgb(237 241 247 / 0.7)"} strokeWidth={1.5} />
+            <circle cx={n.x} cy={n.y} r={n.hub ? 2.4 : 1.6} fill={n.hub ? "#2F7BFF" : "#F3F5F8"} />
           </g>
         );
       })}

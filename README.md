@@ -103,19 +103,23 @@ src/
 
 ## Regras editoriais
 
-Nenhum dado foi inventado: sem clientes, depoimentos, métricas, ano de
-fundação, equipe ou certificações. Cada produto registra a origem das
-informações em `sources`.
+Nenhum dado foi inventado: sem depoimentos, métricas, ano de fundação, equipe
+ou certificações. Cada produto registra a origem das informações em `sources`.
 
-- **Limpaki:** informações do portfólio CastroX (`src/projects.json`) e do
-  briefing. Imagens em `public/products/limpaki/`.
-- **Avvia:** informações do repositório `gateway-tech`
-  (`knowledge_plataforma_pagamentos.md`, `README.md`, `brand/README.md`). A
-  página está **oculta** (`visibility: "hidden"`, 404 em produção) até
-  confirmação de titularidade e aprovação da marca. Para pré-visualizar:
-  `PREVIEW_HIDDEN_PRODUCTS=true npm run dev` e abra `/produtos/avvia`.
-- **Logotipo:** tipográfico e provisório (`components/layout/Logo.tsx`,
-  `app/icon.svg`). Substitua quando houver arquivo oficial.
+- **Produtos:** todos são da KI COMPANY (confirmado em 22/11/2026). Textos
+  tirados dos READMEs dos repositórios `castrox-dev/*` (Verificador-De-Viabilidade,
+  autorizaronu, central-assinante, CADASTRO, isp-noc, estoki, taktalk,
+  gateway-tech). O selo de situação ("No ar", "Em validação", "Em
+  desenvolvimento") segue o estado descrito em cada repositório.
+- **Clientes:** GigaUp, SUVNET e Fibramar, autorizados pela empresa
+  (`clients` em `src/content/company.ts`). Não associe um cliente a um produto
+  específico sem confirmação.
+- **Razão social e CNPJ:** KI COMPANY INOVA SIMPLES (I.S.) · 69.196.472/0001-68,
+  padrão em `src/content/site.ts` (as variáveis de ambiente só sobrescrevem).
+- **Marca:** símbolo oficial vetorizado em `components/layout/Logo.tsx`, logo
+  circular em `public/brand/` e ícones em `app/icon.png` e `app/apple-icon.png`.
+  Paleta (#0A1020, #0F2D4B, #00E6C3, #8B5CF6, #E5E7EB, #FFFFFF) nos tokens de
+  `globals.css`; tipografia Montserrat (`@fontsource-variable/montserrat`).
 - **Política de privacidade:** texto base; revise com o jurídico antes de
   publicar.
 

@@ -58,7 +58,7 @@ export default async function ContatoPage({ searchParams }: { searchParams: Prom
       <div aria-hidden className="bg-blueprint mask-radial pointer-events-none absolute inset-0 -z-10" />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-[-20%] left-[-10%] -z-10 h-[600px] w-[600px] rounded-full bg-[radial-gradient(closest-side,rgb(47_116_255/0.16),transparent)] blur-2xl"
+        className="pointer-events-none absolute top-[-20%] left-[-10%] -z-10 h-[600px] w-[600px] rounded-full bg-[radial-gradient(closest-side,rgb(47_123_255/0.16),transparent)] blur-2xl"
       />
       <Container className="grid gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">

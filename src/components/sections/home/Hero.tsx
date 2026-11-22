@@ -14,7 +14,7 @@ export function Hero() {
       </ParallaxLayer>
       <div
         aria-hidden
-        className="animate-gradient pointer-events-none absolute top-[-20%] right-[-10%] -z-10 h-[780px] w-[780px] rounded-full bg-[radial-gradient(closest-side,rgb(47_116_255/0.22),rgb(139_124_246/0.08)_55%,transparent)] blur-2xl"
+        className="animate-gradient pointer-events-none absolute top-[-20%] right-[-10%] -z-10 h-[780px] w-[780px] rounded-full bg-[radial-gradient(closest-side,rgb(47_123_255/0.22),rgb(139_124_246/0.08)_55%,transparent)] blur-2xl"
       />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-ink-950" />
 

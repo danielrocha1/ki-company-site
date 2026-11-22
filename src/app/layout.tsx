@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/Footer";
@@ -11,6 +10,7 @@ import { getMainNav } from "@/content/navigation";
 import { site } from "@/content/site";
 import { ogImageUrl, organizationJsonLd } from "@/lib/seo";
 
+import "@fontsource-variable/montserrat";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05070c",
+  themeColor: "#0A1020",
   colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="pt-BR" className={GeistMono.variable}>
       <body className="min-h-dvh">
         <MotionProvider>
           <Header nav={getMainNav()} />

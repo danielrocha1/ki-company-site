@@ -122,9 +122,9 @@ export function TelecomDiagram() {
         <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" aria-describedby={panelId} role="group" aria-label="Fluxo de integração para telecom">
           <defs>
             <linearGradient id="td-flow" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2={W} y2="0">
-              <stop offset="0" stopColor="#4D8DFF" />
-              <stop offset="0.55" stopColor="#3DD6F5" />
-              <stop offset="1" stopColor="#8B7CF6" />
+              <stop offset="0" stopColor="#2F7BFF" />
+              <stop offset="0.55" stopColor="#00E6C3" />
+              <stop offset="1" stopColor="#8B5CF6" />
             </linearGradient>
           </defs>
 
@@ -136,8 +136,8 @@ export function TelecomDiagram() {
                 width={BOX_W + 28}
                 height={H - 30}
                 rx={18}
-                fill={selected === li ? "rgb(77 141 255 / 0.06)" : "transparent"}
-                stroke={selected === li ? "rgb(77 141 255 / 0.35)" : "rgb(148 163 194 / 0.08)"}
+                fill={selected === li ? "rgb(47 123 255 / 0.06)" : "transparent"}
+                stroke={selected === li ? "rgb(47 123 255 / 0.35)" : "rgb(148 163 194 / 0.08)"}
                 strokeDasharray={selected === li ? undefined : "3 6"}
                 style={{ transition: "all .3s", opacity: fragmented && li > 0 && li < 4 ? 0.3 : 1 }}
               />
@@ -145,7 +145,7 @@ export function TelecomDiagram() {
                 x={COL_X[li]}
                 y={50}
                 textAnchor="middle"
-                fill={selected === li ? "#3DD6F5" : "rgb(163 173 191 / 0.7)"}
+                fill={selected === li ? "#00E6C3" : "rgb(163 173 191 / 0.7)"}
                 style={{ font: "500 11px var(--font-geist-mono), monospace", letterSpacing: "0.14em", textTransform: "uppercase" }}
               >
                 {l.label}
@@ -183,7 +183,7 @@ export function TelecomDiagram() {
                 aria-label={`${b.label}: ${diagramLayers[b.layer]!.title}`}
                 onClick={() => setSelected(b.layer)}
                 onKeyDown={(e) => onNodeKey(e, b.layer)}
-                className="cursor-pointer outline-none [&:focus-visible>rect:first-child]:stroke-[#3DD6F5]"
+                className="cursor-pointer outline-none [&:focus-visible>rect:first-child]:stroke-[#00E6C3]"
                 style={{ opacity: dim ? 0.25 : 1, transition: "opacity .3s" }}
               >
                 <rect
@@ -192,8 +192,8 @@ export function TelecomDiagram() {
                   width={BOX_W}
                   height={b.h}
                   rx={12}
-                  fill="#0A0E16"
-                  stroke={active ? "#4D8DFF" : "rgb(148 163 194 / 0.28)"}
+                  fill="#0E162B"
+                  stroke={active ? "#2F7BFF" : "rgb(148 163 194 / 0.28)"}
                   strokeWidth={active ? 1.6 : 1}
                   style={{ transition: "stroke .25s" }}
                 />
@@ -242,7 +242,7 @@ export function TelecomDiagram() {
               {li < diagramLayers.length - 1 && (
                 <span aria-hidden className="mx-auto block h-7 w-px overflow-hidden">
                   <svg viewBox="0 0 2 28" className="h-7 w-px" preserveAspectRatio="none">
-                    <line x1="1" x2="1" y1="0" y2="28" stroke={fragmented ? "#fbbf24" : "#3DD6F5"} strokeWidth="2" strokeDasharray="4 6" className="animate-dash" />
+                    <line x1="1" x2="1" y1="0" y2="28" stroke={fragmented ? "#fbbf24" : "#00E6C3"} strokeWidth="2" strokeDasharray="4 6" className="animate-dash" />
                   </svg>
                 </span>
               )}

@@ -86,7 +86,7 @@ export function Footer() {
           © {year} {site.legal.legalName ?? site.name}
           {site.legal.cnpj && <> · CNPJ {site.legal.cnpj}</>}
         </p>
-        <p className="label-mono !text-[0.65rem]">Engenharia de software · Integração · Automação</p>
+        <p className="label-mono !text-[0.65rem]">{site.slogan}</p>
       </Container>
     </footer>
   );

@@ -45,7 +45,11 @@ export type IconName =
   | "zap"
   | "globe"
   | "file-code"
-  | "radio";
+  | "radio"
+  | "scan"
+  | "camera"
+  | "wifi-off"
+  | "file-up";
 
 export type Feature = { icon?: IconName; title: string; text: string };
 
@@ -59,9 +63,13 @@ export type ProductStatus = "live" | "in-development";
  */
 export type Visibility = "public" | "hidden";
 
+/** Agrupamento na página de produtos. */
+export type ProductSegment = "telecom" | "empresas";
+
 export type Product = {
   slug: string;
   name: string;
+  segment: ProductSegment;
   category: string;
   status: ProductStatus;
   statusLabel: string;
@@ -71,6 +79,12 @@ export type Product = {
   /** Cores de acento do produto, aplicadas dentro da identidade da KI. */
   accent: { primary: string; secondary: string };
   logo?: { src: string; width: number; height: number; alt: string };
+  /** Ícone quadrado do app, usado na prévia quando não há captura de tela. */
+  appIcon?: { src: string; alt: string };
+  /** Ícone genérico da prévia quando o produto não tem logo nem ícone próprio. */
+  glyph?: IconName;
+  /** Endereço público do produto, exibido como texto. */
+  url?: string;
   media?: {
     desktop?: { src: string; width: number; height: number; alt: string };
     mobile?: { src: string; width: number; height: number; alt: string };

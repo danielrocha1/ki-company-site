@@ -46,7 +46,7 @@ export function PageHero({ eyebrow, title, description, crumbs, children, aside 
       <div aria-hidden className="bg-blueprint mask-radial pointer-events-none absolute inset-0 -z-10" />
       <div
         aria-hidden
-        className="animate-gradient pointer-events-none absolute top-[-35%] left-[30%] -z-10 h-[620px] w-[620px] rounded-full bg-[radial-gradient(closest-side,rgb(47_116_255/0.18),rgb(139_124_246/0.06)_60%,transparent)] blur-2xl"
+        className="animate-gradient pointer-events-none absolute top-[-35%] left-[30%] -z-10 h-[620px] w-[620px] rounded-full bg-[radial-gradient(closest-side,rgb(47_123_255/0.18),rgb(139_124_246/0.06)_60%,transparent)] blur-2xl"
       />
       <Container className={aside ? "grid items-center gap-12 lg:grid-cols-12" : undefined}>
         <div className={aside ? "lg:col-span-7" : "max-w-3xl"}>

@@ -95,7 +95,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
       {/* Como funciona */}
       <section aria-labelledby="como-funciona" className="py-16 sm:py-24">
         <Container>
-          <SectionHeader id="como-funciona" eyebrow="Como funciona" title={`Visão geral do funcionamento da ${product.name}.`} />
+          <SectionHeader id="como-funciona" eyebrow="Como funciona" title="Visão geral do funcionamento." />
           <div className="mt-12 grid items-start gap-10 lg:grid-cols-12">
             <ol className={product.media?.mobile ? "grid gap-4 sm:grid-cols-2 lg:col-span-8" : "grid gap-4 sm:grid-cols-2 lg:col-span-12 lg:grid-cols-4"}>
               {product.howItWorks.map((step, i) => (

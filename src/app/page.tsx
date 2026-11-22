@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { ProductCard } from "@/components/products/ProductCard";
+import { ClientsStrip } from "@/components/sections/ClientsStrip";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
@@ -30,7 +31,11 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  const products = getPublicProducts();
+  const featuredSlugs = ["mapfiber", "cx-tecnico", "central-do-assinante", "estoki"];
+  const allProducts = getPublicProducts();
+  const products = featuredSlugs
+    .map((slug) => allProducts.find((p) => p.slug === slug))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
     <>
@@ -75,10 +80,10 @@ export default function HomePage() {
               id="produtos"
               eyebrow="02 — Produtos próprios"
               title="Produtos que criamos, lançamos e operamos."
-              description="Construir produtos próprios mantém nossa engenharia afiada. O que aprendemos operando volta para cada projeto de cliente."
+              description="Produtos que criamos, vendemos e mantemos, usados por provedores de internet e empresas. O que aprendemos operando volta para cada projeto de cliente."
             />
             <ButtonLink href="/produtos" variant="secondary" className="shrink-0">
-              Explore nossos produtos
+              Ver os {allProducts.length} produtos
             </ButtonLink>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -90,6 +95,8 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      <ClientsStrip />
 
       {/* 3. Serviços */}
       <section aria-labelledby="servicos" className="py-20 sm:py-28">
@@ -142,7 +149,7 @@ export default function HomePage() {
       <section aria-labelledby="telecom" className="relative overflow-hidden py-20 sm:py-28">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_20%_50%,rgb(47_116_255/0.12),transparent_70%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_20%_50%,rgb(47_123_255/0.12),transparent_70%)]"
         />
         <Container className="relative grid items-center gap-12 lg:grid-cols-2">
           <div>

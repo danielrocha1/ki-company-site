@@ -2,6 +2,8 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { ArrowRight } from "lucide-react";
 
+import { ProductCard } from "@/components/products/ProductCard";
+import { ClientsStrip } from "@/components/sections/ClientsStrip";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { PageHero } from "@/components/sections/PageHero";
@@ -11,6 +13,7 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { getProductsBySegment } from "@/content/products";
 import { telecomAudiences, telecomPains, telecomSolutions } from "@/content/telecom";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
@@ -40,6 +43,7 @@ const engagement = [
 ];
 
 export default function TelecomPage() {
+  const telecomProducts = getProductsBySegment("telecom");
   return (
     <>
       <PageHero
@@ -120,6 +124,31 @@ export default function TelecomPage() {
           </ul>
         </Container>
       </section>
+
+      <section aria-labelledby="produtos-telecom" className="py-16 sm:py-24">
+        <Container>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeader
+              id="produtos-telecom"
+              eyebrow="Produtos prontos"
+              title="Produtos para provedores, já em uso."
+              description="Além de projetos sob medida, a KI COMPANY tem produtos próprios para a rotina do provedor, do técnico de campo ao assinante."
+            />
+            <ButtonLink href="/produtos" variant="secondary" className="shrink-0">
+              Todos os produtos
+            </ButtonLink>
+          </div>
+          <ul className="mt-12 grid gap-6 md:grid-cols-2">
+            {telecomProducts.map((p, i) => (
+              <Reveal as="li" key={p.slug} delay={(i % 2) * 0.08}>
+                <ProductCard product={p} />
+              </Reveal>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <ClientsStrip />
 
       <section aria-labelledby="engajamento" className="py-16 sm:py-24">
         <Container>

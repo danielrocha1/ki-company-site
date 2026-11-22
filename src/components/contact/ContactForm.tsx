@@ -288,7 +288,7 @@ export function ContactForm({ defaultInterest, fallbackContact }: Props) {
             <input
               id={id("consent")}
               type="checkbox"
-              className="mt-0.5 size-4 shrink-0 cursor-pointer accent-[#4d8dff]"
+              className="mt-0.5 size-4 shrink-0 cursor-pointer accent-[#2F7BFF]"
               aria-invalid={!!errors.consent}
               aria-describedby={describedBy("consent")}
               {...register("consent")}

@@ -130,3 +130,9 @@ export const about = {
   commitment:
     "Tecnologia é meio, não fim. Escolhemos ferramentas pela adequação ao problema, documentamos nossas decisões e mantemos a solução preparada para evoluir.",
 };
+
+/**
+ * Provedores que usam produtos da KI COMPANY.
+ * Nomes autorizados pela empresa em 22/11/2026. Inclua aqui só com autorização.
+ */
+export const clients: string[] = ["GigaUp", "SUVNET", "Fibramar"];

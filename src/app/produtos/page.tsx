@@ -1,11 +1,12 @@
 import { ProductCard } from "@/components/products/ProductCard";
 import { CtaBand } from "@/components/sections/CtaBand";
+import { ClientsStrip } from "@/components/sections/ClientsStrip";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { getPublicProducts } from "@/content/products";
+import { getProductsBySegment, segments } from "@/content/products";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -27,36 +28,35 @@ const principles = [
 ];
 
 export default function ProdutosPage() {
-  const products = getPublicProducts();
   return (
     <>
       <PageHero
         crumbs={crumbs}
         eyebrow="Ecossistema de produtos"
         title="Produtos digitais que criamos e operamos."
-        description="Além de desenvolver para clientes, construímos produtos próprios. É onde testamos nossas decisões de arquitetura, experiência e operação no mundo real."
+        description="Produtos que a KI COMPANY cria, vende e mantém, de apps para o técnico de campo de provedores a sistemas de estoque, atendimento e pagamentos."
       />
 
-      <section aria-label="Lista de produtos" className="pb-8">
-        <Container>
-          <ul className="grid gap-6 md:grid-cols-2">
-            {products.map((p, i) => (
-              <Reveal as="li" key={p.slug} delay={i * 0.08}>
-                <ProductCard product={p} priority={i === 0} />
-              </Reveal>
-            ))}
-            <Reveal as="li" delay={0.12}>
-              <div className="flex h-full min-h-[320px] flex-col justify-end rounded-2xl border border-dashed border-line-strong p-7">
-                <p className="label-mono text-fg-subtle">Em construção</p>
-                <p className="mt-3 text-xl font-semibold">Novos produtos a caminho.</p>
-                <p className="mt-2 leading-relaxed text-fg-muted">
-                  O ecossistema cresce a partir de problemas que encontramos nos projetos e nas operações que acompanhamos.
-                </p>
-              </div>
-            </Reveal>
-          </ul>
-        </Container>
-      </section>
+      {segments.map((segment) => {
+        const items = getProductsBySegment(segment.id);
+        if (items.length === 0) return null;
+        return (
+          <section key={segment.id} aria-labelledby={`segmento-${segment.id}`} className="pb-16">
+            <Container>
+              <SectionHeader id={`segmento-${segment.id}`} eyebrow={`${items.length} produtos`} title={segment.title} description={segment.description} />
+              <ul className="mt-10 grid gap-6 md:grid-cols-2">
+                {items.map((p, i) => (
+                  <Reveal as="li" key={p.slug} delay={(i % 2) * 0.08}>
+                    <ProductCard product={p} priority={i === 0} />
+                  </Reveal>
+                ))}
+              </ul>
+            </Container>
+          </section>
+        );
+      })}
+
+      <ClientsStrip />
 
       <section aria-labelledby="principios" className="py-20 sm:py-28">
         <Container>

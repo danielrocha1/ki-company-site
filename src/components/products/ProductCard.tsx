@@ -6,6 +6,7 @@ import type { CSSProperties } from "react";
 import type { Product } from "@/content/types";
 import { cn } from "@/lib/cn";
 
+import { Icon } from "../ui/Icon";
 import { SpotlightCard } from "../ui/SpotlightCard";
 
 export function StatusBadge({ product, className }: { product: Product; className?: string }) {
@@ -56,7 +57,20 @@ export function ProductVisual({ product, priority }: { product: Product; priorit
           <Image src={product.logo.src} alt={product.logo.alt} width={product.logo.width} height={product.logo.height} className="h-auto w-full max-w-[260px]" />
         </div>
       ) : (
-        <div className="absolute inset-0 grid place-items-center text-3xl font-semibold">{product.name}</div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 text-center">
+          {product.appIcon ? (
+            // eslint-disable-next-line @next/next/no-img-element -- ícones SVG pequenos, sem otimização
+            <img src={product.appIcon.src} alt={product.appIcon.alt} width={88} height={88} className="size-[88px] rounded-[22px] shadow-2xl shadow-black/50" />
+          ) : (
+            <span
+              className="grid size-[88px] place-items-center rounded-[22px] border border-white/15 shadow-2xl shadow-black/50"
+              style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-2))" }}
+            >
+              <Icon name={product.glyph ?? "boxes"} className="size-10 text-white" />
+            </span>
+          )}
+          <span className="text-2xl font-semibold tracking-tight sm:text-3xl">{product.name}</span>
+        </div>
       )}
     </div>
   );
