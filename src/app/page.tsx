@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { ProductCard } from "@/components/products/ProductCard";
-import { ClientsStrip } from "@/components/sections/ClientsStrip";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { Hero } from "@/components/sections/home/Hero";
+import { Journey, type JourneyStep } from "@/components/sections/home/Journey";
+import { ProductShowcase } from "@/components/sections/home/ProductShowcase";
+import { Proof } from "@/components/sections/home/Proof";
+
 import { ServiceCard } from "@/components/services/ServiceCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -14,11 +16,10 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { differentiators, pillars, processSteps } from "@/content/company";
+import { clients, differentiators, pillars, processSteps } from "@/content/company";
 import { getPublicProducts } from "@/content/products";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
-import { diagramLayers, telecomAudiences } from "@/content/telecom";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = {
@@ -31,11 +32,52 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  const featuredSlugs = ["mapfiber", "cx-tecnico", "cadastroki", "estoki"];
-  const allProducts = getPublicProducts();
-  const products = featuredSlugs
-    .map((slug) => allProducts.find((p) => p.slug === slug))
-    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+  const all = getPublicProducts();
+  const order = ["mapfiber", "cx-tecnico", "cadastroki", "isp-noc", "estoki", "taktalk", "avvia", "limpaki"];
+  const rank = (slug: string) => (order.includes(slug) ? order.indexOf(slug) : order.length);
+  const showcase = [...all].sort((a, b) => rank(a.slug) - rank(b.slug));
+  const stats = [
+    { value: all.length, label: "produtos próprios" },
+    { value: all.filter((p) => p.status === "live").length, label: "produtos no ar" },
+    { value: clients.length, label: "provedores clientes" },
+    { value: all.filter((p) => p.segment === "telecom").length, label: "produtos para provedores" },
+  ];
+  const href = (slug: string) => `/produtos/${slug}`;
+  const journey: JourneyStep[] = [
+    {
+      id: "campo",
+      icon: "smartphone",
+      stage: "Campo",
+      title: "O técnico instala sem ligar para o escritório.",
+      text: "Agenda do dia, leitura da ONU pela câmera, autorização na OLT e OS fechada com fotos, direto do celular.",
+      product: { name: "CX Técnico", href: href("cx-tecnico") },
+    },
+    {
+      id: "rede",
+      icon: "map",
+      stage: "Rede",
+      title: "A rede inteira no mapa, até sem sinal.",
+      text: "Viabilidade por endereço, portas das CTOs, emendas e rompimentos, com o técnico montando a rede na rua.",
+      product: { name: "MapFiber", href: href("mapfiber") },
+    },
+    {
+      id: "base",
+      icon: "database",
+      stage: "Base",
+      title: "Comprou um provedor? A base entra no IXC.",
+      text: "Clientes, contratos e logins importados de dumps e planilhas, sem duplicar quem já existe.",
+      product: { name: "Cadastroki", href: href("cadastroki") },
+    },
+    {
+      id: "operacao",
+      icon: "activity",
+      stage: "Operação",
+      title: "A queda aparece no painel antes do cliente ligar.",
+      text: "Agente na rede do provedor, coleta ICMP, SNMP e MikroTik, incidentes e alertas num painel só.",
+      product: { name: "ISP NOC", href: href("isp-noc") },
+    },
+  ];
+  const stack = ["Go", "TypeScript", "Next.js", "React", "NestJS", "Django", "PostgreSQL", "Redis", "IXC Provedor", "MikroTik", "SNMP", "WhatsApp Business API"];
 
   return (
     <>
@@ -71,39 +113,23 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* 2. Produtos próprios */}
-      <section aria-labelledby="produtos" className="relative py-20 sm:py-28">
-        <div aria-hidden className="bg-blueprint mask-fade-y pointer-events-none absolute inset-0 opacity-50" />
-        <Container className="relative">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeader
-              id="produtos"
-              eyebrow="02 — Produtos próprios"
-              title="Produtos que criamos, lançamos e operamos."
-              description="Produtos que criamos, vendemos e mantemos, usados por provedores de internet e empresas. O que aprendemos operando volta para cada projeto de cliente."
-            />
-            <ButtonLink href="/produtos" variant="secondary" className="shrink-0">
-              Ver os {allProducts.length} produtos
-            </ButtonLink>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {products.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.08} className={products.length === 1 ? "md:col-span-2 md:max-w-3xl" : undefined}>
-                <ProductCard product={p} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <Proof stats={stats} clients={clients} stack={stack} />
 
-      <ClientsStrip />
+      <ProductShowcase products={showcase} />
+
+      <Journey steps={journey} />
+      <div className="-mt-8 flex justify-center pb-10">
+        <ButtonLink href="/telecom" variant="secondary">
+          Soluções para telecom
+        </ButtonLink>
+      </div>
 
       {/* 3. Serviços */}
       <section aria-labelledby="servicos" className="py-20 sm:py-28">
         <Container>
           <SectionHeader
             id="servicos"
-            eyebrow="03 — Serviços especializados"
+            eyebrow="04 — Serviços especializados"
             title="Software, integração e automação para operações complexas."
             description="Do NOC ao sistema comercial, do backend à observabilidade. Cada serviço começa entendendo a sua operação."
           />
@@ -137,58 +163,11 @@ export default function HomePage() {
         <Container>
           <SectionHeader
             id="diferenciais"
-            eyebrow="04 — Como trabalhamos"
+            eyebrow="05 — Como trabalhamos"
             title="Diferenciais que aparecem no código, não no discurso."
             description="Práticas de engenharia que aplicamos em todos os projetos, próprios ou de clientes."
           />
           <FeatureGrid items={differentiators} className="mt-12" />
-        </Container>
-      </section>
-
-      {/* 5. Telecom */}
-      <section aria-labelledby="telecom" className="relative overflow-hidden py-20 sm:py-28">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_20%_50%,rgb(47_123_255/0.12),transparent_70%)]"
-        />
-        <Container className="relative grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <SectionHeader
-              id="telecom"
-              eyebrow="05 — Telecomunicações"
-              title="Parceiro de tecnologia para quem mantém a rede de pé."
-              description="Integramos monitoramento, inventário, viabilidade e sistemas comerciais para reduzir a fragmentação operacional de provedores, operadoras e integradores."
-            />
-            <Reveal className="mt-8 flex flex-wrap gap-2">
-              {telecomAudiences.map((a) => (
-                <span key={a} className="rounded-full border border-line-strong bg-white/[0.02] px-3 py-1.5 text-sm text-fg-muted">
-                  {a}
-                </span>
-              ))}
-            </Reveal>
-            <Reveal className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/telecom">Conheça nossas soluções para telecom</ButtonLink>
-              <ButtonLink href="/servicos/viabilidade-tecnica" variant="ghost">
-                Viabilidade técnica
-              </ButtonLink>
-            </Reveal>
-          </div>
-          <Reveal>
-            <ol className="relative space-y-2.5" aria-label="Camadas de uma integração para telecom">
-              {diagramLayers.map((l, i) => (
-                <li key={l.id} className="relative flex items-center gap-4 rounded-xl border border-line bg-ink-900/70 px-4 py-3.5">
-                  <span className="label-mono w-10 shrink-0 text-data">L{i + 1}</span>
-                  <span className="flex-1">
-                    <span className="block font-medium">{l.title}</span>
-                    <span className="block text-sm text-fg-subtle">{l.items.map((it) => it.label).join(" · ")}</span>
-                  </span>
-                  {i < diagramLayers.length - 1 && (
-                    <span aria-hidden className="absolute -bottom-2.5 left-9 h-2.5 w-px bg-gradient-to-b from-signal to-data" />
-                  )}
-                </li>
-              ))}
-            </ol>
-          </Reveal>
         </Container>
       </section>
 

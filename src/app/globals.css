@@ -38,6 +38,9 @@
   --animate-gradient: gradient-drift 18s ease-in-out infinite alternate;
   --animate-page-in: page-in 0.5s var(--ease-out-expo) both;
   --animate-rise: rise 0.9s var(--ease-out-expo) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-scroll-hint: scroll-hint 1.8s var(--ease-out-expo) infinite;
+  --animate-marquee: marquee 38s linear infinite;
 
   @keyframes pulse-soft {
     0%, 100% { opacity: 0.55; transform: scale(1); }
@@ -53,6 +56,18 @@
   @keyframes rise {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: none; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes scroll-hint {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(260%); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
   @keyframes gradient-drift {
     0% { transform: translate3d(-4%, -2%, 0) scale(1); }
@@ -112,6 +127,27 @@
       linear-gradient(to right, rgb(148 163 194 / 0.055) 1px, transparent 1px),
       linear-gradient(to bottom, rgb(148 163 194 / 0.055) 1px, transparent 1px);
     background-size: 64px 64px;
+  }
+
+  /* Borda em degradê que gira (CTA) */
+  @property --cta-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  .cta-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--color-ink-850), var(--color-ink-850)) padding-box,
+      conic-gradient(from var(--cta-angle), rgb(148 163 194 / 0.18), #1E5BFF, #00E6C3, rgb(148 163 194 / 0.18) 40%, rgb(148 163 194 / 0.18)) border-box;
+    animation: cta-spin 8s linear infinite;
+  }
+  @keyframes cta-spin {
+    to { --cta-angle: 360deg; }
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
   }
 
   .mask-fade-y {

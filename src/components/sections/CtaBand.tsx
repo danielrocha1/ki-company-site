@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 
 import { ButtonLink } from "../ui/Button";
 import { Container } from "../ui/Container";
+import { Magnetic } from "../ui/Magnetic";
+import { LogoMark } from "../layout/Logo";
 import { Reveal } from "../ui/Reveal";
 import { Eyebrow } from "../ui/SectionHeader";
 
@@ -17,7 +19,8 @@ export function CtaBand({ eyebrow = "Próximo passo", title, text, primary, seco
   return (
     <section aria-labelledby="cta-title" className="py-20 sm:py-28">
       <Container>
-        <Reveal className="relative overflow-hidden rounded-[28px] border border-line-strong bg-ink-850 px-6 py-14 sm:px-12 sm:py-20">
+        <Reveal className="cta-border relative overflow-hidden rounded-[28px] bg-ink-850 px-6 py-14 sm:px-12 sm:py-24">
+          <LogoMark className="pointer-events-none absolute -right-10 -bottom-10 h-64 opacity-[0.06] sm:h-80" />
           <div aria-hidden className="bg-blueprint mask-radial pointer-events-none absolute inset-0 opacity-70" />
           <div
             aria-hidden
@@ -30,9 +33,11 @@ export function CtaBand({ eyebrow = "Próximo passo", title, text, primary, seco
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-fg-muted">{text}</p>
             <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <ButtonLink href={primary.href} external={primary.external} size="lg">
-                {primary.label}
-              </ButtonLink>
+              <Magnetic>
+                <ButtonLink href={primary.href} external={primary.external} size="lg" className="shadow-[0_0_40px_-6px_rgb(47_123_255/0.7)]">
+                  {primary.label}
+                </ButtonLink>
+              </Magnetic>
               {secondary && (
                 <ButtonLink href={secondary.href} size="lg" variant="secondary">
                   {secondary.label}

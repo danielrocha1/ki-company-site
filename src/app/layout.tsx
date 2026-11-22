@@ -11,6 +11,7 @@ import { site } from "@/content/site";
 import { ogImageUrl, organizationJsonLd } from "@/lib/seo";
 
 import "@fontsource-variable/montserrat";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
