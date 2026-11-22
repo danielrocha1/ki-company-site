@@ -320,63 +320,6 @@ export const products: Product[] = [
     sources: ["castrox-dev/autorizaronu: README.md, app/layout.tsx"],
   },
   {
-    slug: "central-do-assinante",
-    name: "Central do Assinante",
-    segment: "telecom",
-    category: "Portal do assinante para provedores",
-    status: "live",
-    statusLabel: "No ar",
-    visibility: "public",
-    tagline: "Fatura, PIX, contrato e desbloqueio no endereço do próprio provedor.",
-    summary:
-      "Central do assinante web para provedores que usam o IXC, inclusive grupos com várias empresas numa mesma instalação. Cada provedor tem a sua central, no seu domínio e com a sua cor.",
-    accent: { primary: "#00E6C3", secondary: "#2F7BFF" },
-    media: {
-      desktop: { src: "/products/central-do-assinante/central-do-assinante.webp", width: 800, height: 500, alt: "Tela de entrada da Central do Assinante da GigaUp" },
-    },
-    glyph: "users",
-    problem: {
-      title: "Segunda via de boleto ainda chega pelo WhatsApp do atendimento.",
-      text: "Quando o assinante não encontra a fatura, o PIX ou o desbloqueio sozinho, ele chama o suporte. Em grupos com vários provedores, a central também precisa separar os dados de cada empresa.",
-    },
-    howItWorks: [
-      { title: "Uma central por provedor", text: "A empresa é identificada pelo endereço acessado. Em cada endereço, só o login daquela empresa é aceito." },
-      { title: "Faturas e pagamento", text: "Lista de faturas com boleto em PDF, código de barras e PIX com QR Code." },
-      { title: "Contrato e desbloqueio", text: "O assinante consulta o contrato e faz o desbloqueio de confiança sem falar com o atendimento." },
-      { title: "Dados e suporte", text: "Meus dados, abertura de suporte e conta, no celular ou no computador." },
-    ],
-    audiences: [
-      {
-        title: "Para o assinante",
-        items: [
-          "Segunda via e PIX sem esperar atendimento",
-          "Desbloqueio de confiança",
-          "Navegação pensada para o celular",
-        ],
-      },
-      {
-        title: "Para o provedor",
-        items: [
-          "Central no domínio e na cor da empresa",
-          "Isolamento entre empresas em toda consulta",
-          "Sessão protegida e limite de tentativas",
-        ],
-      },
-    ],
-    differentiators: [
-      { icon: "layers", title: "Multiempresa de verdade", text: "Várias operações numa só instalação do IXC, sem um assinante enxergar dados de outra empresa." },
-      { icon: "shield", title: "Segurança no backend", text: "Sessão em cookie protegido, validação de entrada e proteção contra acesso a dados de terceiros." },
-      { icon: "plug", title: "Integrada ao IXC", text: "Faturas, contratos, desbloqueio e chamados lidos direto do IXC Provedor." },
-    ],
-    primaryCta: { label: "Quero uma central para meu provedor", href: "/contato?interesse=produtos" },
-    seo: {
-      title: "Central do Assinante — portal do assinante integrado ao IXC",
-      description:
-        "Central do assinante para provedores IXC, com faturas, boleto, PIX, contrato, desbloqueio de confiança e suporte, uma central por empresa no domínio do provedor.",
-    },
-    sources: ["castrox-dev/central-assinante: README.md"],
-  },
-  {
     slug: "cadastroki",
     name: "Cadastroki",
     segment: "telecom",

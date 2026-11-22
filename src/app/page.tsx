@@ -31,7 +31,7 @@ export const metadata = {
 };
 
 export default function HomePage() {
-  const featuredSlugs = ["mapfiber", "cx-tecnico", "central-do-assinante", "estoki"];
+  const featuredSlugs = ["mapfiber", "cx-tecnico", "cadastroki", "estoki"];
   const allProducts = getPublicProducts();
   const products = featuredSlugs
     .map((slug) => allProducts.find((p) => p.slug === slug))
