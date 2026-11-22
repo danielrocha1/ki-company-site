@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens — KI COMPANY
+   Dark mode é a identidade principal. Todas as cores vivem aqui.
+------------------------------------------------------------------- */
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --color-ink-950: #05070c;
+  --color-ink-900: #080b12;
+  --color-ink-850: #0a0e16;
+  --color-ink-800: #0e1320;
+  --color-ink-700: #151c2c;
+  --color-navy-900: #0b1324;
+  --color-navy-800: #0f1b33;
+
+  --color-line: rgb(148 163 194 / 0.12);
+  --color-line-strong: rgb(148 163 194 / 0.22);
+
+  --color-fg: #edf1f7;
+  --color-fg-muted: #a3adbf;
+  --color-fg-subtle: #7a8598;
+
+  --color-signal: #4d8dff;
+  --color-signal-strong: #2f74ff;
+  --color-data: #3dd6f5;
+  --color-violet: #8b7cf6;
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-danger: #f87171;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-pulse-soft: pulse-soft 3.2s var(--ease-out-expo) infinite;
+  --animate-dash: dash 1.6s linear infinite;
+  --animate-gradient: gradient-drift 18s ease-in-out infinite alternate;
+  --animate-page-in: page-in 0.5s var(--ease-out-expo) both;
+  --animate-rise: rise 0.9s var(--ease-out-expo) both;
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -24; }
+  }
+  @keyframes page-in {
+    from { opacity: 0.4; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes gradient-drift {
+    0% { transform: translate3d(-4%, -2%, 0) scale(1); }
+    100% { transform: translate3d(4%, 3%, 0) scale(1.06); }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --header-h: 4.25rem;
+  }
+
+  html {
+    background: var(--color-ink-950);
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    background: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: rgb(77 141 255 / 0.35);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-data);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    letter-spacing: -0.025em;
+  }
+
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  /* Grade técnica de fundo: linhas finas de diagrama */
+  .bg-blueprint {
+    background-image:
+      linear-gradient(to right, rgb(148 163 194 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(148 163 194 / 0.055) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .mask-fade-y {
+    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  }
+
+  .mask-radial {
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, #f5f8ff 10%, #9cc0ff 45%, #7fe3f7 75%, #b3a8ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Card com iluminação controlada que segue o cursor */
+  .spotlight {
+    --mx: 50%;
+    --my: -20%;
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      320px circle at var(--mx) var(--my),
+      rgb(110 160 255 / 0.55),
+      rgb(61 214 245 / 0.18) 35%,
+      transparent 65%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-expo);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(420px circle at var(--mx) var(--my), rgb(77 141 255 / 0.07), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-expo);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .spotlight:hover::before,
+  .spotlight:hover::after,
+  .spotlight:focus-within::before {
+    opacity: 1;
+  }
+
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .prose-site p + p { margin-top: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  header[data-site-header], footer[data-site-footer] { display: none; }
+  body { background: #fff; color: #000; }
+}

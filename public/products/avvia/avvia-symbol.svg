@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" role="img" aria-label="AVVIA">
+<title>AVVIA</title><defs>
+  <linearGradient id="top-avlight" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0" stop-color="#00E6C3"/><stop offset="1" stop-color="#00BCD4"/>
+  </linearGradient>
+  <linearGradient id="bot-avlight" x1="0" y1="0.35" x2="1" y2="0.8">
+    <stop offset="0" stop-color="#0B63F6"/><stop offset="0.5" stop-color="#2F6BFF"/><stop offset="1" stop-color="#9B4DFF"/>
+  </linearGradient>
+  <radialGradient id="fold-avlight" cx="0.5" cy="0.3" r="0.34">
+    <stop offset="0" stop-color="#0A1020" stop-opacity="0.9"/>
+    <stop offset="0.55" stop-color="#0A1020" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#0A1020" stop-opacity="0"/>
+  </radialGradient>
+  <mask id="band-avlight" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1400" height="1100">
+    <rect x="-200" y="-200" width="1400" height="1100" fill="#000"/>
+    <path d="M300 700 L650 320 L1030 700" fill="none" stroke="#fff" stroke-width="170" stroke-linejoin="round"/>
+  </mask>
+  <mask id="gap-avlight" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1400" height="1100">
+    <rect x="-200" y="-200" width="1400" height="1100" fill="#fff"/>
+    <path d="M300 700 L650 320 L1030 700" fill="none" stroke="#000" stroke-width="206" stroke-linejoin="round"/>
+  </mask>
+</defs>
+<g style="isolation:isolate">
+  <path d="M60 700 L470 95 L760 300" fill="none" stroke="url(#top-avlight)" stroke-width="170" stroke-linejoin="round" stroke-linecap="butt" mask="url(#gap-avlight)"/>
+  <path d="M300 700 L650 320 L1030 700" fill="none" stroke="url(#bot-avlight)" stroke-width="170" stroke-linejoin="round" stroke-linecap="butt"/>
+  <rect x="0" y="0" width="1000" height="620" fill="url(#fold-avlight)" mask="url(#band-avlight)"/>
+</g>
+</svg>
