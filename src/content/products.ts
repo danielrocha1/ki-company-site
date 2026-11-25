@@ -254,7 +254,8 @@ export const products: Product[] = [
       { icon: "map", title: "Feito para o celular", text: "Interface em tela cheia pensada para o uso na rua, com tema claro e escuro." },
       { icon: "plug", title: "Integrado ao IXC", text: "Clientes e sinal da ONU vindos do IXC aparecem junto da porta da CTO." },
     ],
-    primaryCta: { label: "Falar sobre o MapFiber", href: "/contato?interesse=produtos" },
+    primaryCta: { label: "Ver planos e comprar", href: "https://mapfiber.vercel.app/", external: true },
+    secondaryCta: { label: "Falar sobre o MapFiber", href: "/contato?interesse=produtos" },
     seo: {
       title: "MapFiber — app de campo para redes de fibra (FTTH)",
       description:

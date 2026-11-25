@@ -11,6 +11,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
+import { Tilt } from "@/components/ui/Tilt";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { canShowHidden, getProduct, products } from "@/content/products";
 import { absoluteUrl } from "@/content/site";
@@ -47,7 +48,10 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
     { name: "Produtos", path: "/produtos" },
     { name: product.name, path: `/produtos/${product.slug}` },
   ];
-  const accentStyle = { "--accent": product.accent.primary, "--accent-2": product.accent.secondary } as CSSProperties;
+  const accentStyle = {
+    "--accent": product.accent.primary,
+    "--accent-2": product.accent.secondary,
+  } as CSSProperties;
 
   return (
     <div style={accentStyle}>
@@ -63,7 +67,19 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           </>
         }
         description={product.summary}
-        aside={<ProductVisual product={product} priority />}
+        aside={
+          <div className="relative">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-10 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--accent)_30%,transparent),transparent)] blur-2xl"
+            />
+            <Tilt className="relative">
+              <div className="rounded-xl shadow-[0_40px_90px_-30px_rgb(0_0_0/0.8)]">
+                <ProductVisual product={product} priority />
+              </div>
+            </Tilt>
+          </div>
+        }
       >
         <div className="flex flex-col gap-4">
           <StatusBadge product={product} className="self-start" />
@@ -99,7 +115,25 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <div className="mt-12 grid items-start gap-10 lg:grid-cols-12">
             <ol className={product.media?.mobile ? "grid gap-4 sm:grid-cols-2 lg:col-span-8" : "grid gap-4 sm:grid-cols-2 lg:col-span-12 lg:grid-cols-4"}>
               {product.howItWorks.map((step, i) => (
-                <Reveal as="li" key={step.title} delay={(i % 2) * 0.08} className="relative rounded-2xl border border-line bg-ink-900/60 p-6">
+                <Reveal
+                  as="li"
+                  key={step.title}
+                  delay={(i % 4) * 0.08}
+                  className="group relative overflow-hidden rounded-2xl border border-line bg-ink-900/60 p-6 transition-colors duration-300 hover:border-line-strong"
+                >
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -top-4 -right-1 font-mono text-[5.5rem] leading-none font-bold text-white/[0.03] transition-colors duration-500 group-hover:text-white/[0.06]"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-x-100"
+                    style={{
+                      background: "linear-gradient(90deg, var(--accent), var(--accent-2))",
+                    }}
+                  />
                   <span className="label-mono" style={{ color: "var(--accent)" }}>
                     Passo {String(i + 1).padStart(2, "0")}
                   </span>

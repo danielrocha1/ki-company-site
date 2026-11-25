@@ -8,6 +8,7 @@ import { cn } from "@/lib/cn";
 
 import { Icon } from "../ui/Icon";
 import { SpotlightCard } from "../ui/SpotlightCard";
+import { Tilt } from "../ui/Tilt";
 
 export function StatusBadge({ product, className }: { product: Product; className?: string }) {
   const live = product.status === "live";
@@ -27,7 +28,10 @@ export function StatusBadge({ product, className }: { product: Product; classNam
 
 /** Prévia visual do produto: mockup real quando existe, senão a marca do produto. */
 export function ProductVisual({ product, priority }: { product: Product; priority?: boolean }) {
-  const style = { "--accent": product.accent.primary, "--accent-2": product.accent.secondary } as CSSProperties;
+  const style = {
+    "--accent": product.accent.primary,
+    "--accent-2": product.accent.secondary,
+  } as CSSProperties;
   return (
     <div style={style} className="relative aspect-[16/10] overflow-hidden rounded-xl border border-line bg-ink-900">
       <div
@@ -64,7 +68,9 @@ export function ProductVisual({ product, priority }: { product: Product; priorit
           ) : (
             <span
               className="grid size-[88px] place-items-center rounded-[22px] border border-white/15 shadow-2xl shadow-black/50"
-              style={{ background: "linear-gradient(135deg, var(--accent), var(--accent-2))" }}
+              style={{
+                background: "linear-gradient(135deg, var(--accent), var(--accent-2))",
+              }}
             >
               <Icon name={product.glyph ?? "boxes"} className="size-10 text-white" />
             </span>
@@ -78,22 +84,24 @@ export function ProductVisual({ product, priority }: { product: Product; priorit
 
 export function ProductCard({ product, priority }: { product: Product; priority?: boolean }) {
   return (
-    <SpotlightCard className="group h-full">
-      <Link href={`/produtos/${product.slug}`} className="flex h-full flex-col rounded-2xl p-4 sm:p-5">
-        <ProductVisual product={product} priority={priority} />
-        <div className="flex flex-1 flex-col px-1 pt-6 pb-1">
-          <div className="flex items-center justify-between gap-3">
-            <p className="label-mono text-fg-subtle">{product.category}</p>
-            <StatusBadge product={product} />
+    <Tilt max={4} className="h-full [&>div]:h-full">
+      <SpotlightCard className="group h-full">
+        <Link href={`/produtos/${product.slug}`} className="flex h-full flex-col rounded-2xl p-4 sm:p-5">
+          <ProductVisual product={product} priority={priority} />
+          <div className="flex flex-1 flex-col px-1 pt-6 pb-1">
+            <div className="flex items-center justify-between gap-3">
+              <p className="label-mono text-fg-subtle">{product.category}</p>
+              <StatusBadge product={product} />
+            </div>
+            <h3 className="mt-3 text-2xl font-semibold">{product.name}</h3>
+            <p className="mt-2 leading-relaxed text-fg-muted">{product.tagline}</p>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-fg">
+              Explorar produto
+              <ArrowUpRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
           </div>
-          <h3 className="mt-3 text-2xl font-semibold">{product.name}</h3>
-          <p className="mt-2 leading-relaxed text-fg-muted">{product.tagline}</p>
-          <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-medium text-fg">
-            Explorar produto
-            <ArrowUpRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-        </div>
-      </Link>
-    </SpotlightCard>
+        </Link>
+      </SpotlightCard>
+    </Tilt>
   );
 }

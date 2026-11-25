@@ -3,6 +3,8 @@ import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { Container } from "../ui/Container";
+import { WordReveal } from "../ui/WordReveal";
+import { FiberField } from "../visuals/FiberField";
 import { Eyebrow } from "../ui/SectionHeader";
 
 type Crumb = { name: string; path: string };
@@ -44,6 +46,9 @@ export function PageHero({ eyebrow, title, description, crumbs, children, aside 
   return (
     <section className="relative isolate overflow-hidden pt-[calc(var(--header-h)+2.5rem)] pb-16 sm:pb-20">
       <div aria-hidden className="bg-blueprint mask-radial pointer-events-none absolute inset-0 -z-10" />
+      <div aria-hidden className="mask-fade-y pointer-events-none absolute inset-0 -z-10 opacity-70">
+        <FiberField />
+      </div>
       <div
         aria-hidden
         className="animate-gradient pointer-events-none absolute top-[-35%] left-[30%] -z-10 h-[620px] w-[620px] rounded-full bg-[radial-gradient(closest-side,rgb(47_123_255/0.18),rgb(139_124_246/0.06)_60%,transparent)] blur-2xl"
@@ -54,12 +59,15 @@ export function PageHero({ eyebrow, title, description, crumbs, children, aside 
             <Breadcrumbs items={crumbs} />
           </div>
           <Eyebrow className="animate-rise mt-8">{eyebrow}</Eyebrow>
-          <h1
-            className="animate-rise mt-4 text-[clamp(2.3rem,5.2vw,4rem)] leading-[1.03] font-semibold tracking-[-0.03em]"
-            style={{ animationDelay: "60ms" }}
-          >
-            {title}
-          </h1>
+          {typeof title === "string" ? (
+            <h1 className="mt-4 text-[clamp(2.3rem,5.2vw,4rem)] leading-[1.03] font-semibold tracking-[-0.03em]">
+              <WordReveal delay={0.1} lines={[{ text: title }]} />
+            </h1>
+          ) : (
+            <h1 className="animate-rise mt-4 text-[clamp(2.3rem,5.2vw,4rem)] leading-[1.03] font-semibold tracking-[-0.03em]" style={{ animationDelay: "60ms" }}>
+              {title}
+            </h1>
+          )}
           <p className="animate-rise mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted sm:text-xl" style={{ animationDelay: "120ms" }}>
             {description}
           </p>
