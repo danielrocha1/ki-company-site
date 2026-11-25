@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { PageHero } from "@/components/sections/PageHero";
@@ -5,7 +7,8 @@ import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { about, differentiators } from "@/content/company";
+import { Tilt } from "@/components/ui/Tilt";
+import { about, differentiators, team } from "@/content/company";
 import { site } from "@/content/site";
 import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 
@@ -38,6 +41,46 @@ export default function SobrePage() {
               <p className="relative mt-5 text-xl leading-snug font-medium sm:text-2xl">{b.text}</p>
             </Reveal>
           ))}
+        </Container>
+      </section>
+
+      <section aria-labelledby="equipe" className="py-16 sm:py-24">
+        <Container>
+          <SectionHeader
+            id="equipe"
+            eyebrow="Quem faz"
+            title="As pessoas por trás dos produtos."
+            description="Quem desenvolve, coloca no ar e mantém o que a KI entrega, do código ao equipamento na rede."
+          />
+          <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {team.map((m, i) => (
+              <Reveal as="li" key={m.name} delay={i * 0.1}>
+                <Tilt max={6} className="group">
+                  <figure className="relative overflow-hidden rounded-2xl border border-line-strong bg-ink-900">
+                    <div className="relative aspect-[4/5] overflow-hidden">
+                      <Image
+                        src={m.photo}
+                        alt={`Foto de ${m.name}`}
+                        fill
+                        sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 90vw"
+                        className="object-cover grayscale transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
+                      />
+                      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent" />
+                      <div
+                        aria-hidden
+                        className="absolute inset-0 bg-[linear-gradient(140deg,rgb(30_91_255/0.25),transparent_45%,rgb(0_230_195/0.18))] opacity-0 mix-blend-screen transition-opacity duration-500 group-hover:opacity-100"
+                      />
+                    </div>
+                    <figcaption className="absolute inset-x-0 bottom-0 p-6">
+                      <span aria-hidden className="mb-4 block h-px w-10 bg-gradient-to-r from-signal to-data transition-all duration-500 group-hover:w-20" />
+                      <span className="block text-xl font-semibold">{m.name}</span>
+                      <span className="label-mono mt-2 block text-data">{m.role}</span>
+                    </figcaption>
+                  </figure>
+                </Tilt>
+              </Reveal>
+            ))}
+          </ul>
         </Container>
       </section>
 

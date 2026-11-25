@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 
 type Stat = { value: number; label: string; suffix?: string };
 
-function Counter({ value, suffix }: { value: number; suffix?: string }) {
+export function Counter({ value, suffix }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
   const reduce = useReducedMotion();

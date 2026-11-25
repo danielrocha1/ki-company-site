@@ -3,6 +3,7 @@ import { GeistMono } from "geist/font/mono";
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { Header } from "@/components/layout/Header";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {children}
           </main>
           <Footer />
+          <WhatsAppFloat />
         </MotionProvider>
         <JsonLd data={organizationJsonLd()} />
       </body>

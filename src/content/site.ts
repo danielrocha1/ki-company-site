@@ -23,7 +23,8 @@ export const site = {
   contact: {
     email: env("NEXT_PUBLIC_CONTACT_EMAIL"),
     phone: env("NEXT_PUBLIC_CONTACT_PHONE"),
-    whatsapp: env("NEXT_PUBLIC_CONTACT_WHATSAPP"),
+    // Número confirmado pela empresa em 25/11/2026. A variável só serve para sobrescrever.
+    whatsapp: env("NEXT_PUBLIC_CONTACT_WHATSAPP") ?? "+55 21 96864-2276",
     city: env("NEXT_PUBLIC_COMPANY_CITY"),
   },
   legal: {
@@ -42,7 +43,8 @@ export function absoluteUrl(path = "/"): string {
   return `${site.url}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-export function whatsappHref(): string | undefined {
+export function whatsappHref(message?: string): string | undefined {
   const digits = site.contact.whatsapp?.replace(/\D/g, "");
-  return digits ? `https://wa.me/${digits}` : undefined;
+  if (!digits) return undefined;
+  return message ? `https://wa.me/${digits}?text=${encodeURIComponent(message)}` : `https://wa.me/${digits}`;
 }

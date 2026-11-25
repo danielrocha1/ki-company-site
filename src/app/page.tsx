@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
+import { Cases } from "@/components/sections/home/Cases";
 import { Hero } from "@/components/sections/home/Hero";
 import { Journey, type JourneyStep } from "@/components/sections/home/Journey";
 import { ProductShowcase } from "@/components/sections/home/ProductShowcase";
@@ -16,7 +17,7 @@ import { Icon } from "@/components/ui/Icon";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { clients, differentiators, pillars, processSteps } from "@/content/company";
+import { cases, clients, differentiators, pillars, processSteps } from "@/content/company";
 import { getPublicProducts } from "@/content/products";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
@@ -123,6 +124,8 @@ export default function HomePage() {
           Soluções para telecom
         </ButtonLink>
       </div>
+
+      <Cases items={cases} />
 
       {/* 3. Serviços */}
       <section aria-labelledby="servicos" className="py-20 sm:py-28">

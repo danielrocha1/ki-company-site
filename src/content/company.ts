@@ -136,3 +136,35 @@ export const about = {
  * Nomes autorizados pela empresa em 22/11/2026. Inclua aqui só com autorização.
  */
 export const clients: string[] = ["GigaUp", "SUVNET", "Fibramar"];
+
+export type TeamMember = { name: string; role: string; photo: string };
+
+/** Equipe, na ordem de exibição confirmada pela empresa em 25/11/2026. */
+export const team: TeamMember[] = [
+  { name: "Daniel Rocha", role: "Desenvolvedor", photo: "/team/daniel-rocha.webp" },
+  { name: "Marcelo Angelo", role: "Desenvolvedor", photo: "/team/marcelo-angelo.webp" },
+  { name: "Ramon dos Anjos", role: "Especialista em redes e hardware", photo: "/team/ramon-dos-anjos.webp" },
+];
+
+export type CaseStudy = {
+  client: string;
+  segment: string;
+  title: string;
+  challenge: string;
+  work: string;
+  result: { value: number; label: string };
+  tags: string[];
+};
+
+/** Casos reais, só com fatos confirmados pela empresa. Nunca acrescente números sem confirmação. */
+export const cases: CaseStudy[] = [
+  {
+    client: "SUVNET",
+    segment: "Provedor de internet",
+    title: "Base de clientes migrada para o IXC Provedor.",
+    challenge: "A SUVNET precisava trazer a base de clientes para dentro do IXC, o sistema de gestão do provedor.",
+    work: "Fizemos a migração dos cadastros dos clientes para dentro do IXC.",
+    result: { value: 400, label: "clientes migrados para o IXC" },
+    tags: ["Migração de base", "IXC Provedor"],
+  },
+];
